@@ -12,6 +12,13 @@ const movieServise = {
 
         return result;
     },
+
+    async create(movieData) {
+        const movie = new Movie(movieData);
+        await movie.save();
+
+        return movieData;
+    },
 };
 
 export default movieServise;

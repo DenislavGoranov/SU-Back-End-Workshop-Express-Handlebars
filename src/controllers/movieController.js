@@ -3,8 +3,15 @@ import movieServise from "../services/movieServise.js";
 
 const movieController = express.Router();
 
-movieController.get("/create", (req, res) => {
+movieController.get("/movie/create", (req, res) => {
     res.render("create");
+});
+
+movieController.post("/movie/create", async (req, res) => {
+    const movieData = req.body;
+    await movieServise.create(movieData);
+
+    res.redirect("/");
 });
 
 movieController.get("/search", (req, res) => {
