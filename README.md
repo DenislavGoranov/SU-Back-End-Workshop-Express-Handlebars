@@ -7,7 +7,7 @@
 🎬 Movie Project – Overview
 
 This project is a movie management web app that allows users to explore, add, and search movies.
-It is built with a simple structure and provides essential functionality for managing a movie collection.
+It is built with a simple structure. It works with file persistence (fs - file saving and reading), and provides essential functionality for managing a movie collection.
 
 
 📌 Main Page (Home)
