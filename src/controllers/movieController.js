@@ -14,8 +14,9 @@ movieController.post("/movie/create", async (req, res) => {
     res.redirect("/");
 });
 
-movieController.get("/search", (req, res) => {
-    res.render("search");
+movieController.get("/movie/search", async (req, res) => {
+    const movies = await movieServise.getAll();
+    res.render("search", { movies });
 });
 
 movieController.get("/about", (req, res) => {
