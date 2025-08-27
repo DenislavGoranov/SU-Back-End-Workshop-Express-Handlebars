@@ -18,10 +18,6 @@ movieController.get("/movie/search", async (req, res) => {
     const filter = req.query;
 
     const movies = await movieServise.getAll(filter);
-    console.log("movies: ", movies);
-    console.log("----------------");
-    console.log("filter", filter);
-    console.log("-------------");
 
     res.render("search", { movies });
 });
@@ -30,7 +26,7 @@ movieController.get("/about", (req, res) => {
     res.render("about");
 });
 
-movieController.get("/:movieId/details", async (req, res) => {
+movieController.get("/movie/:movieId/details", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
