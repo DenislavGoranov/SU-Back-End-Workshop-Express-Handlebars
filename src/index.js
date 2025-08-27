@@ -1,7 +1,6 @@
 import express from "express";
 import handlebars from "express-handlebars";
-
-import homeController from "./Services/homeService.js";
+import homeController from "./services/homeController.js";
 
 const app = express();
 
