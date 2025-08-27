@@ -15,7 +15,14 @@ movieController.post("/movie/create", async (req, res) => {
 });
 
 movieController.get("/movie/search", async (req, res) => {
-    const movies = await movieServise.getAll();
+    const filter = req.query;
+
+    const movies = await movieServise.getAll(filter);
+    console.log("movies: ", movies);
+    console.log("----------------");
+    console.log("filter", filter);
+    console.log("-------------");
+
     res.render("search", { movies });
 });
 
