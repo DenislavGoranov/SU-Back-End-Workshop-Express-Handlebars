@@ -20,12 +20,12 @@ It is built with a simple structure and provides essential functionality for man
   Input fields include title, genre, year, and possibly a description or poster.
   
 
-📌 Search Page
+📌 Search Page (Search)
    → Allows users to search movies by title, genre, or year.
   Displays matching results dynamically.
   
 
-📌 About Page
+📌 About Page (About)
    → Contains information about the project/application. (The information is provided by SoftUni!)
   
 🔑 View Movies → See all movies on the main page.
