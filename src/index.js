@@ -1,9 +1,10 @@
 import express from "express";
 import handlebars from "express-handlebars";
-import homeController from "./services/homeController.js";
-import createController from "./services/createController.js";
-import searchController from "./services/searchController.js";
-import aboutController from "./services/aboutController.js";
+import homeController from "./controllers/homeController.js";
+import createController from "./controllers/createController.js";
+import searchController from "./controllers/searchController.js";
+import aboutController from "./controllers/aboutController.js";
+import errorController from "./controllers/errorController.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(homeController);
 app.use(createController);
 app.use(searchController);
 app.use(aboutController);
+app.use(errorController);
 
 app.listen(5000, () =>
     console.log("The server is listening on http://localhost:5000...")
