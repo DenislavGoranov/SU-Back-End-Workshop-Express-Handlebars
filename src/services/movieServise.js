@@ -6,6 +6,12 @@ const movieServise = {
 
         return result;
     },
+
+    async getSpecificOne(movieId) {
+        const result = await Movie.getOne(movieId);
+
+        return result;
+    },
 };
 
 export default movieServise;

@@ -21,8 +21,8 @@ app.use(homeController);
 app.use(createController);
 app.use(searchController);
 app.use(aboutController);
-app.use(errorController);
 app.use(detailsController);
+app.use(errorController);
 
 app.listen(5000, () =>
     console.log("The server is listening on http://localhost:5000...")
