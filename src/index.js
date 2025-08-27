@@ -1,6 +1,7 @@
 import express from "express";
 import handlebars from "express-handlebars";
 import homeController from "./services/homeController.js";
+import createController from "./services/createController.js";
 
 const app = express();
 
@@ -13,10 +14,7 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.use(homeController);
-
-app.get("/create", (req, res) => {
-    res.render("create");
-});
+app.use(createController);
 
 app.get("/search", (req, res) => {
     res.render("search");
