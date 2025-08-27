@@ -6,7 +6,7 @@
 # Hi there, I'm Denislav 👋
 🎬 Movie Project – Overview
 
-This project is a movie management web app that allows users to explore, add, and search movies.
+This project is a movie management web app that allows users to explore, add, and search movies. The CSS and HTML pages are provided by SoftUni.
 It is built with a simple structure. It works with file persistence (fs - file saving and reading), and provides essential functionality for managing a movie collection.
 
 
