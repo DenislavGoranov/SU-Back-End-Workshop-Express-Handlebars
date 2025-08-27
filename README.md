@@ -32,10 +32,9 @@ It is built with a simple structure and provides essential functionality for man
 
   Contains information about the project/application. (The information is provided by SoftUni!)
   
+🔑 View Movies → See all movies on the main page.
 
 🔑 Create Movie → Add new movie entries with details.
-
-🔑 View Movies → See all movies on the main page.
 
 🔑 Search Movies → Filter movies based on title, genre, or year.
 
