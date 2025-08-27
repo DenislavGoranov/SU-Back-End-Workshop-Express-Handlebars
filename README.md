@@ -1,6 +1,6 @@
 ## 💻 Tech Stack
-- Languages: JavaScript, CSS, HTML, HandleBars, Express
-- Frameworks: Node.js
+- Languages: JavaScript, CSS, HTML, Express
+- Frameworks: Node.js, HandleBars (view engine)
 - Tools: Git
 
 # Hi there, I'm Denislav 👋
