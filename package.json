@@ -2,9 +2,10 @@
     "name": "04-movie-magic-workshop-part-1-resources",
     "version": "1.0.0",
     "main": "index.js",
+    "type": "module",
     "scripts": {
-        "start": "node index.js",
-        "dev": "node --watch index.js"
+        "start": "node ./src/index.js",
+        "dev": "node --watch ./src/index.js"
     },
     "repository": {
         "type": "git",
@@ -12,7 +13,6 @@
     },
     "keywords": [],
     "author": "",
-    "type": "module",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/DenislavGoranov/SU-Back-End-Workshop-Express-Handlebars/issues"
