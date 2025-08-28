@@ -35,3 +35,5 @@ It is built with a simple structure. It works with file persistence (fs - file s
 🔑 Search Movies → Filter movies based on title, genre, or year.
 
 🔑 About Info → Learn about the project/application.
+
+IMPORTANT!!! - To start the project you have to install npm, and you have to type "npm run dev" in the terminal.
