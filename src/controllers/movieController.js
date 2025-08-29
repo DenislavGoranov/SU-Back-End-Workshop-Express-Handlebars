@@ -1,5 +1,5 @@
 import express from "express";
-import movieServise from "../services/movieServise.js";
+import movieServise from "../services/movieService.js";
 
 const movieController = express.Router();
 

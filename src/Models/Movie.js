@@ -30,6 +30,6 @@ const movieSchema = new Schema({
     },
 });
 
-const Movie = model("movie", movieSchema);
+const Movie = model("Movie", movieSchema);
 
 export default Movie;
