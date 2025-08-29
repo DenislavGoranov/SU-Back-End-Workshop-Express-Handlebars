@@ -21,8 +21,7 @@ const movieServise = {
     },
 
     async getSpecificOne(movieId) {
-        const result = await Movie.getOne(movieId);
-
+        const result = await Movie.findById(movieId).lean();
         return result;
     },
 
