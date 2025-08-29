@@ -2,11 +2,20 @@ import express from "express";
 import handlebars from "express-handlebars";
 import homeController from "./controllers/homeController.js";
 import movieController from "./controllers/movieController.js";
+import mongoose from "mongoose";
 
 const app = express();
 
 app.use(express.static("./src/static"));
 app.use(express.urlencoded());
+
+try {
+    mongoose.connect("mongodb://localhost:27017", {
+        dbName: "movie-magic-softuni",
+    });
+} catch (error) {
+    console.log("Couldn't connect to the DB");
+}
 
 app.engine("hbs", handlebars.engine({ extname: "hbs" }));
 
