@@ -3,6 +3,7 @@ import handlebars from "express-handlebars";
 import homeController from "./controllers/homeController.js";
 import movieController from "./controllers/movieController.js";
 import mongoose from "mongoose";
+import castController from "./controllers/castContoller.js";
 
 const app = express();
 
@@ -34,6 +35,11 @@ app.set("views", "./src/views");
 
 app.use(homeController);
 app.use(movieController);
+app.use(castController);
+
+app.get("*url", (req, res) => {
+    res.render("404");
+});
 
 app.listen(5000, () =>
     console.log("The server is listening on http://localhost:5000...")

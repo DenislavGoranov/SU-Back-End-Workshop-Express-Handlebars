@@ -34,8 +34,4 @@ movieController.get("/movie/:movieId/details", async (req, res) => {
     res.render("details", { movie });
 });
 
-movieController.get("*url", (req, res) => {
-    res.render("404");
-});
-
 export default movieController;
