@@ -1,6 +1,6 @@
 import Movie from "../Models/Movie.js";
 
-const movieServise = {
+const movieService = {
     async getAll(filter = {}) {
         let result = await Movie.find();
         if (filter.title) {
@@ -33,4 +33,4 @@ const movieServise = {
     },
 };
 
-export default movieServise;
+export default movieService;
