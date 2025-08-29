@@ -1,33 +1,16 @@
 import { Schema, model } from "mongoose";
 
 const movieSchema = new Schema({
-    id: {
-        type: Number,
-    },
-    title: {
-        type: String,
-    },
-    category: {
-        type: String,
-    },
-    genre: {
-        type: String,
-    },
-    director: {
-        type: String,
-    },
-    year: {
-        type: String,
-    },
-    imageURL: {
-        type: String,
-    },
-    rating: {
-        type: Number,
-    },
-    description: {
-        type: String,
-    },
+    id: Number,
+    title: String,
+    type: String,
+    category: String,
+    genre: String,
+    director: String,
+    year: String,
+    imageUrl: String,
+    rating: Number,
+    description: String,
 });
 
 const Movie = model("Movie", movieSchema);
