@@ -21,7 +21,7 @@ const movieService = {
     },
 
     async getSpecificOne(movieId) {
-        const result = await Movie.findById(movieId).lean();
+        const result = await Movie.findById(movieId).populate("casts").lean();
         return result;
     },
 
