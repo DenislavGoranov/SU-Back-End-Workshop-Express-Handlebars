@@ -1,7 +1,7 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const castSchema = new Schema({
-    name: String,
+    title: String,
     age: Number,
     born: String,
     imageUrl: String,
