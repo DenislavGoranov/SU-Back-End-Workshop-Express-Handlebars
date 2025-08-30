@@ -2,7 +2,16 @@ import Cast from "../Models/Cast.js";
 
 const castService = {
     getAll() {
-        return Cast.find({});
+        return Cast.find();
+    },
+    getAllWithFilter(filter) {
+        let query = Cast.find();
+
+        if (filter.exclude) {
+            query = query.in("id", filter.exclude);
+        }
+
+        return query;
     },
     async create(castData) {
         const newCast = new Cast(castData);

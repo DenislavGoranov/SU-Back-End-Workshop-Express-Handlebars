@@ -31,8 +31,8 @@ movieController.get("/movie/:movieId/details", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
-
-    res.render("details", { movie });
+    const casts = await castService.getAllWithFilter({ exclude: movie.casts });
+    res.render("details", { movie, casts });
 });
 
 movieController.get("/attach/cast/:movieId", async (req, res) => {
@@ -47,7 +47,6 @@ movieController.get("/attach/cast/:movieId", async (req, res) => {
 movieController.post("/attach/cast/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
     const castId = req.body.cast;
-    console.log(castId);
 
     await movieServise.attach(movieId, castId);
 
