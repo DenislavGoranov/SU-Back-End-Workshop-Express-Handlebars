@@ -23,11 +23,7 @@ movieController.get("/search", async (req, res) => {
     res.render("search", { movies });
 });
 
-movieController.get("/about", (req, res) => {
-    res.render("about");
-});
-
-movieController.get("/movie/:movieId/details", async (req, res) => {
+movieController.get("/:movieId/details", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
@@ -35,7 +31,7 @@ movieController.get("/movie/:movieId/details", async (req, res) => {
     res.render("details", { movie, casts });
 });
 
-movieController.get("/attach/cast/:movieId", async (req, res) => {
+movieController.get("/cast/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
@@ -44,7 +40,7 @@ movieController.get("/attach/cast/:movieId", async (req, res) => {
     res.render("./cast/attach", { movie, casts });
 });
 
-movieController.post("/attach/cast/:movieId", async (req, res) => {
+movieController.post("/cast/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
     const castId = req.body.cast;
 
