@@ -33,8 +33,12 @@ app.set("view engine", "hbs");
 
 app.set("views", "./src/views");
 
-app.use(homeController);
-app.use(movieController);
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+app.use("/", homeController);
+app.use("/movie", movieController);
 app.use("/casts", castController);
 
 app.get("*url", (req, res) => {

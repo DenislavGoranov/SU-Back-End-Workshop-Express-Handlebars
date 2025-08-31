@@ -4,18 +4,18 @@ import castService from "../services/castService.js";
 
 const movieController = express.Router();
 
-movieController.get("/movie/create", (req, res) => {
+movieController.get("/create", (req, res) => {
     res.render("create");
 });
 
-movieController.post("/movie/create", async (req, res) => {
+movieController.post("/create", async (req, res) => {
     const movieData = req.body;
     await movieServise.create(movieData);
 
     res.redirect("/");
 });
 
-movieController.get("/movie/search", async (req, res) => {
+movieController.get("/search", async (req, res) => {
     const filter = req.query;
 
     const movies = await movieServise.getAll(filter);
