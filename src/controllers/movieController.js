@@ -27,15 +27,23 @@ movieController.get("/:movieId/details", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
-    const casts = await castService.getAllWithFilter({ exclude: movie.casts });
-    res.render("details", { movie, casts });
+    const çasts = movie.casts;
+    console.log(çasts);
+
+    res.render("details", { movie, çasts });
 });
 
 movieController.get("/cast/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
-    const casts = await castService.getAll();
+
+    const excludeIds = movie.casts.map((c) => c._id);
+
+    const casts = await castService.getAllWithFilter({
+        exclude: excludeIds,
+    });
+    console.log(casts);
 
     res.render("./cast/attach", { movie, casts });
 });

@@ -7,8 +7,8 @@ const castService = {
     getAllWithFilter(filter) {
         let query = Cast.find();
 
-        if (filter.exclude) {
-            query = query.in("id", filter.exclude);
+        if (filter.exclude && filter.exclude.length > 0) {
+            query = query.where("_id").nin(filter.exclude);
         }
 
         return query;
