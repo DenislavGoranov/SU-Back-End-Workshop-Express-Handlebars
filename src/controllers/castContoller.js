@@ -4,7 +4,7 @@ import castService from "../services/castService.js";
 const castController = express.Router();
 
 castController.get("/create", (req, res) => {
-    res.render("./cast/create");
+    res.render("./cast/create", { title: "Add Cast" });
 });
 
 castController.post("/create", async (req, res) => {

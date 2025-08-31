@@ -5,7 +5,7 @@ const homeController = express.Router();
 homeController.get("/", async (req, res) => {
     const movies = await movieServise.getAll();
 
-    res.render("home", { movies });
+    res.render("home", { movies, title: "Home Page" });
 });
 
 export default homeController;

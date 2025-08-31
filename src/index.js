@@ -34,7 +34,7 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.get("/about", (req, res) => {
-    res.render("about");
+    res.render("about", { title: "About Page" });
 });
 
 app.use("/", homeController);
