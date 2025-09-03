@@ -16,8 +16,6 @@ export default {
             expiresIn: "1h",
         });
 
-        console.log("token  ", token);
-
         return token;
     },
     async login(userData) {

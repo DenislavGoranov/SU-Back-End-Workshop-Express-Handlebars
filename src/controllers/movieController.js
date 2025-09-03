@@ -33,7 +33,7 @@ movieController.get("/:movieId/details", async (req, res) => {
     res.render("details", { movie, casts, title: "Details" });
 });
 
-movieController.get("/cast/:movieId", async (req, res) => {
+movieController.get("/attach/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieServise.getSpecificOne(movieId);
@@ -45,6 +45,14 @@ movieController.get("/cast/:movieId", async (req, res) => {
     });
 
     res.render("./cast/attach", { movie, casts, title: "Attach" });
+});
+
+movieController.get("/edit/:movieId", async (req, res) => {
+    const movieId = req.params.movieId;
+
+    const movie = await movieServise.getSpecificOne(movieId);
+
+    res.render("cast/edit", { movie, title: "Edit" });
 });
 
 movieController.post("/cast/:movieId", async (req, res) => {
