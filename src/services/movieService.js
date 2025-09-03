@@ -25,8 +25,11 @@ const movieService = {
         return result;
     },
 
-    async create(movieData) {
+    async create(movieData, userId) {
         const movie = new Movie(movieData);
+
+        movie.owner = userId;
+
         await movie.save();
 
         return movieData;

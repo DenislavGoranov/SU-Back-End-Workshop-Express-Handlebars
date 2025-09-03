@@ -16,6 +16,10 @@ const movieSchema = new Schema({
             ref: "Cast",
         },
     ],
+    owner: {
+        type: Types.ObjectId,
+        ref: "User",
+    },
 });
 
 const Movie = model("Movie", movieSchema);
