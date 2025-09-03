@@ -40,6 +40,10 @@ const movieService = {
         movie.casts.push(castId);
         return movie.save();
     },
+
+    update(movieId, newData) {
+        return Movie.findByIdAndUpdate(movieId, newData);
+    },
 };
 
 export default movieService;
