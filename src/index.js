@@ -4,19 +4,14 @@ import homeController from "./controllers/homeController.js";
 import movieController from "./controllers/movieController.js";
 import mongoose from "mongoose";
 import castController from "./controllers/castContoller.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(express.static("./src/static"));
 app.use(express.urlencoded());
 
-try {
-    mongoose.connect("mongodb://localhost:27017", {
-        dbName: "movie-magic-softuni",
-    });
-} catch (error) {
-    console.log("Couldn't connect to the DB");
-}
+app.use(cookieParser());
 
 app.engine(
     "hbs",
@@ -33,14 +28,20 @@ app.set("view engine", "hbs");
 
 app.set("views", "./src/views");
 
+try {
+    mongoose.connect("mongodb://localhost:27017", {
+        dbName: "movie-magic-softuni",
+    });
+} catch (error) {
+    console.log("Couldn't connect to the DB");
+}
+
 app.get("/about", (req, res) => {
     res.render("about", { title: "About Page" });
 });
-
 app.use("/", homeController);
 app.use("/movie", movieController);
 app.use("/casts", castController);
-
 app.get("*url", (req, res) => {
     res.render("404");
 });

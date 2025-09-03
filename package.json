@@ -20,8 +20,11 @@
     "homepage": "https://github.com/DenislavGoranov/SU-Back-End-Workshop-Express-Handlebars#readme",
     "description": "",
     "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cookie-parser": "^1.4.7",
         "express": "^5.1.0",
         "express-handlebars": "^8.0.3",
+        "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.18.0",
         "uuid": "^11.1.0"
     }
