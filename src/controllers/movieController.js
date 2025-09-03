@@ -28,9 +28,12 @@ movieController.get("/details/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
+    const { id } = req?.user || {};
+    const isOwner = movie.owner == id;
+
     const casts = movie.casts;
 
-    res.render("details", { movie, casts, title: "Details" });
+    res.render("details", { movie, casts, isOwner, title: "Details" });
 });
 
 movieController.get("/attach/:movieId", async (req, res) => {
