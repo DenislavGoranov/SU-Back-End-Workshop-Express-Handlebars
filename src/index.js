@@ -2,6 +2,7 @@ import express from "express";
 import handlebars from "express-handlebars";
 import homeController from "./controllers/homeController.js";
 import movieController from "./controllers/movieController.js";
+import userController from "./controllers/userController.js";
 import mongoose from "mongoose";
 import castController from "./controllers/castContoller.js";
 import cookieParser from "cookie-parser";
@@ -42,6 +43,7 @@ app.get("/about", (req, res) => {
 app.use("/", homeController);
 app.use("/movie", movieController);
 app.use("/casts", castController);
+app.use("/user", userController);
 app.get("*url", (req, res) => {
     res.render("404");
 });
