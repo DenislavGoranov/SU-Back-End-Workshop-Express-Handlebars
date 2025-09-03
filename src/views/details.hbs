@@ -22,8 +22,10 @@
                 <p class="card-category">Category: {{movie.category}}</p>
             </div>
 
-            <div>
+            <div class="details-btn">
                 <a href="/movie/cast/{{movie._id}}" class="details">Attach</a>
+                <a href="/movies/{{movie.id}}/edit" class="details">Edit</a>
+                <a href="/movies/{{movie.id}}/delete" class="details">Delete</a>
             </div>
         </div>
         <div class="card_right">
