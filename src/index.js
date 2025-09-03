@@ -6,13 +6,15 @@ import userController from "./controllers/userController.js";
 import mongoose from "mongoose";
 import castController from "./controllers/castContoller.js";
 import cookieParser from "cookie-parser";
+import { auth } from "./middlewares/authMiddleware.js";
 
 const app = express();
 
 app.use(express.static("./src/static"));
-app.use(express.urlencoded());
 
 app.use(cookieParser());
+app.use(express.urlencoded());
+app.use(auth);
 
 app.engine(
     "hbs",

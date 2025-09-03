@@ -23,7 +23,6 @@ userController.get("/login", (req, res) => {
 
 userController.post("/login", async (req, res) => {
     const userData = req.body;
-    console.log(userData);
 
     const token = await userService.login(userData);
 
