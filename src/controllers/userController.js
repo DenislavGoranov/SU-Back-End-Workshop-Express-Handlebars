@@ -1,4 +1,5 @@
 import express from "express";
+
 import userService from "../services/userService.js";
 const userController = express.Router();
 
@@ -18,6 +19,17 @@ userController.post("/register", async (req, res) => {
 
 userController.get("/login", (req, res) => {
     res.render("user/login", { title: "Login" });
+});
+
+userController.post("/login", async (req, res) => {
+    const userData = req.body;
+    console.log(userData);
+
+    const token = await userService.login(userData);
+
+    res.cookie("auth", token);
+
+    res.redirect("/");
 });
 
 export default userController;
