@@ -44,6 +44,9 @@ const movieService = {
     update(movieId, newData) {
         return Movie.findByIdAndUpdate(movieId, newData);
     },
+    delete(movieId) {
+        return Movie.findByIdAndDelete(movieId);
+    },
 };
 
 export default movieService;
