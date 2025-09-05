@@ -7,6 +7,8 @@ export default {
     async register(userData) {
         const user = await User.create(userData);
 
+        console.log(userData);
+
         const payload = {
             id: user.id,
             email: user.email,
