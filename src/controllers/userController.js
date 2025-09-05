@@ -10,12 +10,15 @@ userController.get("/register", async (req, res) => {
 
 userController.post("/register", async (req, res) => {
     const userData = req.body;
+    try {
+        const token = await userService.register(userData);
 
-    const token = await userService.register(userData);
+        res.cookie("auth", token);
 
-    res.cookie("auth", token);
-
-    res.redirect("/");
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 userController.get("/login", (req, res) => {
@@ -25,17 +28,25 @@ userController.get("/login", (req, res) => {
 userController.post("/login", async (req, res) => {
     const userData = req.body;
 
-    const token = await userService.login(userData);
+    try {
+        const token = await userService.login(userData);
 
-    res.cookie("auth", token);
+        res.cookie("auth", token);
 
-    res.redirect("/");
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 userController.get("/logout", isAuth, (req, res) => {
-    res.clearCookie("auth");
+    try {
+        res.clearCookie("auth");
 
-    res.redirect("/");
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 export default userController;

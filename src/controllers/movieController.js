@@ -13,98 +13,126 @@ movieController.get("/create", isAuth, (req, res) => {
 movieController.post("/create", isAuth, async (req, res) => {
     const userId = req.user.id;
     const movieData = req.body;
-    await movieService.create(movieData, userId);
 
-    res.redirect("/");
+    try {
+        await movieService.create(movieData, userId);
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 movieController.get("/search", async (req, res) => {
     const filter = req.query;
 
-    const movies = await movieService.getAll(filter);
-
-    res.render("search", { movies, title: "Search Page" });
+    try {
+        const movies = await movieService.getAll(filter);
+        res.render("search", { movies, title: "Search Page" });
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 movieController.get("/details/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
+    try {
+        const movie = await movieService.getSpecificOne(movieId);
+        const { id } = req?.user || {};
+        const isOwner = movie.owner == id;
 
-    const movie = await movieService.getSpecificOne(movieId);
-    const { id } = req?.user || {};
-    const isOwner = movie.owner == id;
+        const casts = movie.casts;
 
-    const casts = movie.casts;
-
-    res.render("details", { movie, casts, isOwner, title: "Details" });
+        res.render("details", { movie, casts, isOwner, title: "Details" });
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 movieController.get("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
-
-    const movie = await movieService.getSpecificOne(movieId);
     const userId = req.user.id;
 
-    const isOwner = await isTheOwner(movieId, userId);
+    try {
+        const movie = await movieService.getSpecificOne(movieId);
 
-    if (!isOwner) {
-        return res.redirect("/404");
+        const isOwner = await isTheOwner(movieId, userId);
+
+        if (!isOwner) {
+            return res.redirect("/404");
+        }
+
+        const excludeIds = movie.casts.map((c) => c._id);
+
+        const casts = await castService.getAllWithFilter({
+            exclude: excludeIds,
+        });
+
+        res.render("./cast/attach", { movie, casts, title: "Attach" });
+    } catch (err) {
+        res.render("404", { error: err.message });
     }
-
-    const excludeIds = movie.casts.map((c) => c._id);
-
-    const casts = await castService.getAllWithFilter({
-        exclude: excludeIds,
-    });
-
-    res.render("./cast/attach", { movie, casts, title: "Attach" });
 });
 
 movieController.post("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const castId = req.body.cast;
 
-    await movieService.attach(movieId, castId);
+    try {
+        await movieService.attach(movieId, castId);
 
-    res.redirect(`/movie/${movieId}/details`);
+        res.redirect(`/movie/${movieId}/details`);
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 movieController.get("/edit/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
-
-    const movie = await movieService.getSpecificOne(movieId);
     const userId = req.user.id;
-    const isOwner = await isTheOwner(movieId, userId);
+    try {
+        const movie = await movieService.getSpecificOne(movieId);
+        const isOwner = await isTheOwner(movieId, userId);
 
-    if (!isOwner) {
-        return res.redirect("/404");
+        if (!isOwner) {
+            return res.redirect("/404");
+        }
+
+        res.render("edit", { movie, title: "Edit" });
+    } catch (err) {
+        res.render("404", { error: err.message });
     }
-
-    res.render("edit", { movie, title: "Edit" });
 });
 
 movieController.post("/edit/:movieId", isAuth, async (req, res) => {
     const newData = req.body;
-
     const movieId = req.params.movieId;
 
-    await movieService.update(movieId, newData);
+    try {
+        await movieService.update(movieId, newData);
 
-    res.redirect(`/movie/edit/${movieId}`);
+        res.redirect(`/movie/edit/${movieId}`);
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 movieController.get("/delete/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const userId = req.user.id;
 
-    const isOwner = await isTheOwner(movieId, userId);
+    try {
+        const isOwner = await isTheOwner(movieId, userId);
 
-    if (!isOwner) {
-        return res.redirect("/404");
+        if (!isOwner) {
+            return res.redirect("/404");
+        }
+
+        await movieService.delete(movieId);
+
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
     }
-
-    await movieService.delete(movieId);
-
-    res.redirect("/");
 });
 
 export default movieController;

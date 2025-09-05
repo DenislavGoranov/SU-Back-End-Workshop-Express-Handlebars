@@ -11,9 +11,13 @@ castController.get("/create", isAuth, (req, res) => {
 castController.post("/create", isAuth, async (req, res) => {
     const castData = req.body;
 
-    await castService.create(castData);
+    try {
+        await castService.create(castData);
 
-    res.redirect("/");
+        res.redirect("/");
+    } catch (err) {
+        res.render("404", { error: err.message });
+    }
 });
 
 export default castController;
