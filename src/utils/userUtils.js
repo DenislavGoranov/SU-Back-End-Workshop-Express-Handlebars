@@ -1,3 +1,6 @@
+import { JWTsecret } from "../config/constants.js";
+import jsonwebtoken from "jsonwebtoken";
+
 export const getToken = (user) => {
     const payload = {
         id: user.id,

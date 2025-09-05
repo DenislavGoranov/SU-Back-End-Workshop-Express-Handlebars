@@ -1,7 +1,5 @@
 import User from "../Models/User.js";
-import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { JWTsecret } from "../config/constants.js";
 import { getToken } from "../utils/userUtils.js";
 
 export default {
