@@ -1,6 +1,7 @@
 import express from "express";
 
 import userService from "../services/userService.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 const userController = express.Router();
 
 userController.get("/register", async (req, res) => {
@@ -31,7 +32,7 @@ userController.post("/login", async (req, res) => {
     res.redirect("/");
 });
 
-userController.get("/logout", (req, res) => {
+userController.get("/logout", isAuth, (req, res) => {
     res.clearCookie("auth");
 
     res.redirect("/");

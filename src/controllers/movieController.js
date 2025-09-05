@@ -1,14 +1,15 @@
 import express from "express";
 import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 
 const movieController = express.Router();
 
-movieController.get("/create", (req, res) => {
+movieController.get("/create", isAuth, (req, res) => {
     res.render("create", { title: "Add Movie" });
 });
 
-movieController.post("/create", async (req, res) => {
+movieController.post("/create", isAuth, async (req, res) => {
     const userId = req.user.id;
     const movieData = req.body;
     await movieService.create(movieData, userId);
@@ -24,7 +25,7 @@ movieController.get("/search", async (req, res) => {
     res.render("search", { movies, title: "Search Page" });
 });
 
-movieController.get("/details/:movieId", async (req, res) => {
+movieController.get("/details/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
@@ -36,7 +37,7 @@ movieController.get("/details/:movieId", async (req, res) => {
     res.render("details", { movie, casts, isOwner, title: "Details" });
 });
 
-movieController.get("/attach/:movieId", async (req, res) => {
+movieController.get("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
@@ -50,7 +51,7 @@ movieController.get("/attach/:movieId", async (req, res) => {
     res.render("./cast/attach", { movie, casts, title: "Attach" });
 });
 
-movieController.post("/attach/:movieId", async (req, res) => {
+movieController.post("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const castId = req.body.cast;
 
@@ -59,7 +60,7 @@ movieController.post("/attach/:movieId", async (req, res) => {
     res.redirect(`/movie/${movieId}/details`);
 });
 
-movieController.get("/edit/:movieId", async (req, res) => {
+movieController.get("/edit/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
@@ -67,7 +68,7 @@ movieController.get("/edit/:movieId", async (req, res) => {
     res.render("edit", { movie, title: "Edit" });
 });
 
-movieController.post("/edit/:movieId", async (req, res) => {
+movieController.post("/edit/:movieId", isAuth, async (req, res) => {
     const newData = req.body;
 
     const movieId = req.params.movieId;
@@ -77,7 +78,7 @@ movieController.post("/edit/:movieId", async (req, res) => {
     res.redirect(`/movie/edit/${movieId}`);
 });
 
-movieController.get("/delete/:movieId", async (req, res) => {
+movieController.get("/delete/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     await movieService.delete(movieId);

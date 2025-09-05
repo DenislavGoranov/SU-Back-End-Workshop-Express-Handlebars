@@ -1,13 +1,14 @@
 import express from "express";
 import castService from "../services/castService.js";
+import { isAuth } from "../middlewares/authMiddleware.js";
 
 const castController = express.Router();
 
-castController.get("/create", (req, res) => {
+castController.get("/create", isAuth, (req, res) => {
     res.render("./cast/create", { title: "Add Cast" });
 });
 
-castController.post("/create", async (req, res) => {
+castController.post("/create", isAuth, async (req, res) => {
     const castData = req.body;
 
     await castService.create(castData);
