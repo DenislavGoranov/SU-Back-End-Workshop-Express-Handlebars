@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
-import { validate } from "uuid";
 
 const userSchema = new Schema({
     email: {

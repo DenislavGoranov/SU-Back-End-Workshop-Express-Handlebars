@@ -7,7 +7,9 @@ export default {
     async register(userData) {
         const user = await User.create(userData);
 
-        console.log(userData);
+        if (userData.password !== userData.rePassword) {
+            throw new Error("Passwords Missmatch!");
+        }
 
         const payload = {
             id: user.id,
