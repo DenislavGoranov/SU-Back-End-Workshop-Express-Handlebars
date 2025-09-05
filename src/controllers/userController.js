@@ -40,7 +40,10 @@ userController.post("/login", async (req, res) => {
 
         res.redirect("/");
     } catch (err) {
-        res.render("404", { error: getErrorMessage(err) });
+        res.render("user/login", {
+            email: userData.email,
+            error: getErrorMessage(err),
+        });
     }
 });
 

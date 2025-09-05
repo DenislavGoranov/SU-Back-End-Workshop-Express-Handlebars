@@ -24,7 +24,7 @@ export default {
         const user = await User.findOne({ email: userData.email });
 
         if (!user) {
-            throw new Error("No Such User!");
+            throw new Error("Invalid Email or Password!");
         }
 
         const isValid = await bcrypt.compare(userData.password, user.password);
