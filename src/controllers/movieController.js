@@ -42,6 +42,8 @@ movieController.get("/attach/:movieId", isAuth, async (req, res) => {
 
     const movie = await movieService.getSpecificOne(movieId);
 
+    await isOwner(movieId);
+
     const excludeIds = movie.casts.map((c) => c._id);
 
     const casts = await castService.getAllWithFilter({
@@ -65,6 +67,8 @@ movieController.get("/edit/:movieId", isAuth, async (req, res) => {
 
     const movie = await movieService.getSpecificOne(movieId);
 
+    await isOwner(movieId);
+
     res.render("edit", { movie, title: "Edit" });
 });
 
@@ -80,6 +84,8 @@ movieController.post("/edit/:movieId", isAuth, async (req, res) => {
 
 movieController.get("/delete/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
+
+    await isOwner(movieId);
 
     await movieService.delete(movieId);
 
