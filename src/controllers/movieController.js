@@ -3,6 +3,7 @@ import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
 import { isTheOwner } from "../utils/authUtils.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const movieController = express.Router();
 
@@ -18,7 +19,7 @@ movieController.post("/create", isAuth, async (req, res) => {
         await movieService.create(movieData, userId);
         res.redirect("/");
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -29,7 +30,7 @@ movieController.get("/search", async (req, res) => {
         const movies = await movieService.getAll(filter);
         res.render("search", { movies, title: "Search Page" });
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -44,7 +45,7 @@ movieController.get("/details/:movieId", isAuth, async (req, res) => {
 
         res.render("details", { movie, casts, isOwner, title: "Details" });
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -69,7 +70,7 @@ movieController.get("/attach/:movieId", isAuth, async (req, res) => {
 
         res.render("./cast/attach", { movie, casts, title: "Attach" });
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -82,7 +83,7 @@ movieController.post("/attach/:movieId", isAuth, async (req, res) => {
 
         res.redirect(`/movie/${movieId}/details`);
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -99,7 +100,7 @@ movieController.get("/edit/:movieId", isAuth, async (req, res) => {
 
         res.render("edit", { movie, title: "Edit" });
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -112,7 +113,7 @@ movieController.post("/edit/:movieId", isAuth, async (req, res) => {
 
         res.redirect(`/movie/edit/${movieId}`);
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -131,7 +132,7 @@ movieController.get("/delete/:movieId", isAuth, async (req, res) => {
 
         res.redirect("/");
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 

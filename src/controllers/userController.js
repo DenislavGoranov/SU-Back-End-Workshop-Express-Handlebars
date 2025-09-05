@@ -2,7 +2,6 @@ import express from "express";
 
 import userService from "../services/userService.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
-import User from "../Models/User.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
 const userController = express.Router();
 
@@ -41,7 +40,7 @@ userController.post("/login", async (req, res) => {
 
         res.redirect("/");
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
@@ -51,7 +50,7 @@ userController.get("/logout", isAuth, (req, res) => {
 
         res.redirect("/");
     } catch (err) {
-        res.render("404", { error: err.message });
+        res.render("404", { error: getErrorMessage(err) });
     }
 });
 
