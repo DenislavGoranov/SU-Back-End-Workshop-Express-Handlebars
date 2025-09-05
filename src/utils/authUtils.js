@@ -1,12 +1,12 @@
 import movieService from "../services/movieService.js";
 
-export const isOwner = async (movieId) => {
+export const isTheOwner = async (movieId, userId) => {
     const movie = await movieService.getSpecificOne(movieId);
-    const userId = req.user.id;
     const movieOwnerId = movie.owner;
+    let result = false;
 
-    if (userId !== movieOwnerId) {
-        res.redirect("/404");
+    if (userId === movieOwnerId) {
+        result = true;
     }
 
     return;

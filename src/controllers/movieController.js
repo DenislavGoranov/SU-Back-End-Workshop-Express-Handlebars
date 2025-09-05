@@ -1,6 +1,7 @@
 import express from "express";
 import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
+import { isTheOwner } from "../utils/authUtils.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
 
 const movieController = express.Router();
@@ -41,8 +42,13 @@ movieController.get("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
+    const userId = req.user.id;
 
-    await isOwner(movieId);
+    const isOwner = await isTheOwner(movieId, userId);
+
+    if (!isOwner) {
+        return res.redirect("/404");
+    }
 
     const excludeIds = movie.casts.map((c) => c._id);
 
@@ -66,8 +72,12 @@ movieController.get("/edit/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
 
     const movie = await movieService.getSpecificOne(movieId);
+    const userId = req.user.id;
+    const isOwner = await isTheOwner(movieId, userId);
 
-    await isOwner(movieId);
+    if (!isOwner) {
+        return res.redirect("/404");
+    }
 
     res.render("edit", { movie, title: "Edit" });
 });
@@ -84,8 +94,13 @@ movieController.post("/edit/:movieId", isAuth, async (req, res) => {
 
 movieController.get("/delete/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
+    const userId = req.user.id;
 
-    await isOwner(movieId);
+    const isOwner = await isTheOwner(movieId, userId);
+
+    if (!isOwner) {
+        return res.redirect("/404");
+    }
 
     await movieService.delete(movieId);
 
