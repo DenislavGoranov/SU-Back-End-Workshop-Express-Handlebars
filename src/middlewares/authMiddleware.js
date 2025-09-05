@@ -22,7 +22,7 @@ export const auth = (req, res, next) => {
 
 export const isAuth = (req, res, next) => {
     if (!req.user) {
-        res.redirect("/user/login");
+        return res.render("user/login", { error: "Access Denied!" });
     }
 
     next();

@@ -58,7 +58,7 @@ movieController.get("/attach/:movieId", isAuth, async (req, res) => {
         const isOwner = await isTheOwner(movieId, userId);
 
         if (!isOwner) {
-            return res.redirect("/404");
+            throw new Error("Access denied!");
         }
 
         const excludeIds = movie.casts.map((c) => c._id);
@@ -94,7 +94,7 @@ movieController.get("/edit/:movieId", isAuth, async (req, res) => {
         const isOwner = await isTheOwner(movieId, userId);
 
         if (!isOwner) {
-            return res.redirect("/404");
+            throw new Error("Access denied!");
         }
 
         res.render("edit", { movie, title: "Edit" });
@@ -124,7 +124,7 @@ movieController.get("/delete/:movieId", isAuth, async (req, res) => {
         const isOwner = await isTheOwner(movieId, userId);
 
         if (!isOwner) {
-            return res.redirect("/404");
+            throw new Error("Access denied!");
         }
 
         await movieService.delete(movieId);

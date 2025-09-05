@@ -4,6 +4,12 @@ import { getToken } from "../utils/userUtils.js";
 
 export default {
     async register(userData) {
+        const existingUser = await User.findOne({ email: userData.email });
+
+        if (existingUser) {
+            throw new Error("User already exists!");
+        }
+
         if (userData.password !== userData.rePassword) {
             throw new Error("Passwords Missmatch!");
         }
