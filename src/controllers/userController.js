@@ -22,6 +22,7 @@ userController.post("/register", async (req, res) => {
         res.render("user/register", {
             email: userData.email,
             error: getErrorMessage(err),
+            title: "Register",
         });
     }
 });
@@ -43,6 +44,7 @@ userController.post("/login", async (req, res) => {
         res.render("user/login", {
             email: userData.email,
             error: getErrorMessage(err),
+            title: "Login",
         });
     }
 });
