@@ -1,4 +1,4 @@
-##💻 Tech Stack
+## 💻 Tech Stack
 
 Languages: JavaScript, CSS, HTML
 
@@ -8,7 +8,7 @@ Database: MongoDB
 
 Tools: Git
 
-#👋 Hi there, I'm Denislav
+# 👋 Hi there, I'm Denislav
 🎬 Movie Project – Overview
 
 This project is a movie management web application that allows users to explore, add, and search for movies. The HTML and CSS pages are provided by SoftUni, while the backend and functionality are built by me. The app has a clean structure and includes essential features for managing a personal movie collection.
