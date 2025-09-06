@@ -40,3 +40,9 @@ About Info → Learn more about the project.
 Ownership Control → Only the owner of a movie can edit, delete, or attach additional details.
 
 Authentication → Includes login, registration, and error handling for secure usage.
+
+### 🚀 Run the project 
+1. 'npm install' - install dependencies 
+2. 'npm run dev' - start the program 
+3. 'http://localhost:5000' - open your browser and navigate to
+4.  Make sure MongoDB is installed and running locally on your machine.
