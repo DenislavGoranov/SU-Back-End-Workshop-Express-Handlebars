@@ -1,40 +1,42 @@
-## 💻 Tech Stack
-- Languages: JavaScript, CSS, HTML
-- Frameworks/Libraries: Node.js, Express, HandleBars (view engine)
-- Databases: MongoDB
-- Tools: Git
+##💻 Tech Stack
 
-# Hi there, I'm Denislav 👋
+Languages: JavaScript, CSS, HTML
+
+Frameworks/Libraries: Node.js, Express, Handlebars (view engine)
+
+Database: MongoDB
+
+Tools: Git
+
+#👋 Hi there, I'm Denislav
 🎬 Movie Project – Overview
 
-This project is a movie management web app that allows users to explore, add, and search movies. The CSS and HTML pages are provided by SoftUni.
-It is built with a simple structure, and provides essential functionality for managing a movie collection.
+This project is a movie management web application that allows users to explore, add, and search for movies. The HTML and CSS pages are provided by SoftUni, while the backend and functionality are built by me. The app has a clean structure and includes essential features for managing a personal movie collection.
 
+📌 Main Features
 
-📌 Main Page (Home)
-   → Displays the list of all movies available in the collection.
-  Shows key details such as title, genre, and year.
-  
-  
-📌 Create Page (Create)
-   → Provides a form to add a new movie to the collection.
-  Input fields include title, genre, year, and possibly a description or poster.
-  
+Home Page
+→ Displays all movies in the collection with key details such as title, genre, and year.
 
-📌 Search Page (Search)
-   → Allows users to search movies by title, genre, or year.
-  Displays matching results dynamically.
-  
+Create Page
+→ Provides a form to add a new movie (title, genre, year, description, or poster).
 
-📌 About Page (About)
-   → Contains information about the project/application. (The information is provided by SoftUni!)
-  
-🔑 View Movies → See all movies on the main page.
+Search Page
+→ Allows users to search movies by title, genre, or year, with dynamically updated results.
 
-🔑 Create Movie → Add new movie entries with details.
+About Page
+→ Contains information about the project/application (provided by SoftUni).
 
-🔑 Search Movies → Filter movies based on title, genre, or year.
+🔑 Functionality
 
-🔑 About Info → Learn about the project/application.
+View Movies → Browse all movies on the home page.
 
-IMPORTANT!!! - To start the project you have to install npm, and you have to type "npm run dev" in the terminal.
+Create Movie → Add new entries with details.
+
+Search Movies → Filter the collection by title, genre, or year.
+
+About Info → Learn more about the project.
+
+Ownership Control → Only the owner of a movie can edit, delete, or attach additional details.
+
+Authentication → Includes login, registration, and error handling for secure usage.
