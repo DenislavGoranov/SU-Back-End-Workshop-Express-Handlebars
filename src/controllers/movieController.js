@@ -4,6 +4,7 @@ import castService from "../services/castService.js";
 import { isTheOwner } from "../utils/authUtils.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
 import { getErrorMessage } from "../utils/errorUtils.js";
+import { getCategoryOptionsViewData } from "../utils/movieUtils.js";
 
 const movieController = express.Router();
 
@@ -43,7 +44,15 @@ movieController.get("/details/:movieId", isAuth, async (req, res) => {
 
         const casts = movie.casts;
 
-        res.render("details", { movie, casts, isOwner, title: "Details" });
+        const getCategoryOptions = getCategoryOptionsViewData();
+
+        res.render("details", {
+            movie,
+            casts,
+            isOwner,
+            title: "Details",
+            getCategoryOptions,
+        });
     } catch (err) {
         res.render("404", { error: getErrorMessage(err) });
     }
