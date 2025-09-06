@@ -39,19 +39,17 @@ movieController.get("/details/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     try {
         const movie = await movieService.getSpecificOne(movieId);
-        const { id } = req?.user || {};
-        const isOwner = movie.owner == id;
+        const userId = req.user.id;
+
+        const isOwner = isTheOwner(movie.owner, userId);
 
         const casts = movie.casts;
-
-        const getCategoryOptions = getCategoryOptionsViewData();
 
         res.render("details", {
             movie,
             casts,
             isOwner,
             title: "Details",
-            getCategoryOptions,
         });
     } catch (err) {
         res.render("404", { error: getErrorMessage(err) });
@@ -61,11 +59,10 @@ movieController.get("/details/:movieId", isAuth, async (req, res) => {
 movieController.get("/attach/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
     const userId = req.user.id;
-
     try {
         const movie = await movieService.getSpecificOne(movieId);
 
-        const isOwner = await isTheOwner(movieId, userId);
+        const isOwner = isTheOwner(movie.owner, userId);
 
         if (!isOwner) {
             throw new Error("Access denied!");
@@ -98,16 +95,23 @@ movieController.post("/attach/:movieId", isAuth, async (req, res) => {
 
 movieController.get("/edit/:movieId", isAuth, async (req, res) => {
     const movieId = req.params.movieId;
-    const userId = req.user.id;
+
     try {
         const movie = await movieService.getSpecificOne(movieId);
-        const isOwner = await isTheOwner(movieId, userId);
+
+        const userId = req.user.id;
+
+        const isOwner = isTheOwner(movie.owner, userId);
 
         if (!isOwner) {
             throw new Error("Access denied!");
         }
 
-        res.render("edit", { movie, title: "Edit" });
+        res.render("edit", {
+            movie,
+            title: "Edit",
+            options: getCategoryOptionsViewData(movie.category),
+        });
     } catch (err) {
         res.render("404", { error: getErrorMessage(err) });
     }
@@ -131,7 +135,9 @@ movieController.get("/delete/:movieId", isAuth, async (req, res) => {
     const userId = req.user.id;
 
     try {
-        const isOwner = await isTheOwner(movieId, userId);
+        const movie = await movieService.getSpecificOne(movieId);
+
+        const isOwner = isTheOwner(movie.owner, userId);
 
         if (!isOwner) {
             throw new Error("Access denied!");
