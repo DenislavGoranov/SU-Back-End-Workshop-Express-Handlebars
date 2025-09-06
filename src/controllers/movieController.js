@@ -35,11 +35,11 @@ movieController.get("/search", async (req, res) => {
     }
 });
 
-movieController.get("/details/:movieId", isAuth, async (req, res) => {
+movieController.get("/details/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
     try {
         const movie = await movieService.getSpecificOne(movieId);
-        const userId = req.user.id;
+        const userId = req.user?.id;
 
         const isOwner = isTheOwner(movie.owner, userId);
 
