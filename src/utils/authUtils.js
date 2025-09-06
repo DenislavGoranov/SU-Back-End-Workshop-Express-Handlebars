@@ -5,9 +5,9 @@ export const isTheOwner = async (movieId, userId) => {
     const movieOwnerId = movie.owner;
     let result = false;
 
-    if (userId === movieOwnerId) {
+    if (userId == movieOwnerId) {
         result = true;
     }
 
-    return;
+    return result;
 };

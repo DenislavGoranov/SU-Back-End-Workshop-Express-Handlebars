@@ -24,9 +24,13 @@
                     <label for="category">Category:</label>
                     <select id="category" class="inputFields" name="category">
                         <option value="">Select Category</option>
-                        {{#each getCategoryOptions}}
-                        <option value="{{value}}" {{selected}}>{{title}}</option>
-                        
+                        {{#each options}}
+                            <option
+                                value="{{value}}"
+                                {{selected}}
+                            >{{title}}</option>
+                        {{/each}}
+
                     </select>
                 </li>
                 <li>
