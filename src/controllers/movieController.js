@@ -39,6 +39,11 @@ movieController.get("/details/:movieId", async (req, res) => {
     const movieId = req.params.movieId;
     try {
         const movie = await movieService.getSpecificOne(movieId);
+
+        if (!movie) {
+            throw new Error("Movie doesn't exist!");
+        }
+
         const userId = req.user?.id;
 
         const isOwner = isTheOwner(movie.owner, userId);
@@ -61,6 +66,10 @@ movieController.get("/attach/:movieId", isAuth, async (req, res) => {
     const userId = req.user.id;
     try {
         const movie = await movieService.getSpecificOne(movieId);
+
+        if (!movie) {
+            throw new Error("Movie doesn't exist!");
+        }
 
         const isOwner = isTheOwner(movie.owner, userId);
 
@@ -99,6 +108,10 @@ movieController.get("/edit/:movieId", isAuth, async (req, res) => {
     try {
         const movie = await movieService.getSpecificOne(movieId);
 
+        if (!movie) {
+            throw new Error("Movie doesn't exist!");
+        }
+
         const userId = req.user.id;
 
         const isOwner = isTheOwner(movie.owner, userId);
@@ -136,6 +149,10 @@ movieController.get("/delete/:movieId", isAuth, async (req, res) => {
 
     try {
         const movie = await movieService.getSpecificOne(movieId);
+
+        if (!movie) {
+            throw new Error("Movie doesn't exist!");
+        }
 
         const isOwner = isTheOwner(movie.owner, userId);
 
