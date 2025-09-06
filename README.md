@@ -45,5 +45,5 @@ Authentication → Includes login, registration, and error handling for secure u
 
 1. 'npm install' - install dependencies
 2. 'npm run dev' - start the program
-3. 'http://localhost:5000' - open your browser and navigate to
+3. 'http://localhost:5000' - open your browser and navigate to the following URL
 4. Make sure MongoDB is installed and running locally on your machine.
